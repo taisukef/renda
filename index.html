@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/>
+<title>renda</title>
+<link rel="apple-touch-icon" href="icon.png"/>
+<meta property="og:image" content="ss.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<script src="fukuno.js"></script>
+<script>"use strict";
+
+window.onload = function() {
+	var cnt = 0;
+	var highscore = 0;
+	var tid = null;
+	var tapped = function() {
+		if (!tid) {
+			tid = setInterval(function() {
+				scoreval.textContent = cnt;
+				if (cnt > highscore) {
+					highscoreval.textContent = cnt;
+					highscore = cnt;
+				}
+				cnt = 0;
+			}, 1000);
+			scoreval.textContent = 0;
+		}
+		cnt++;
+		e.preventEvent();
+	};
+	tap.onmousedown = tapped;
+	tap.ontouchstart = tapped;
+};
+</script>
+<style>
+body {
+	margin: 0px;
+	font-family: sans-serif;
+	-webkit-text-size-adjust: none;
+	text-align: center;
+}
+#main {
+	text-align: center;
+}
+#tap {
+	font-size: 40px;
+	margin: 20px;
+	border: 5px solid black;
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+	line-height: 200px;
+	user-select: none;
+}
+.score {
+	display: block;
+}
+.scoreval {
+	font-size: 35px;
+	margin: 10px;
+}
+.scoreunit {
+	margin-left: .5em;
+	font-size: 20px;
+}
+a {
+	color: gray !important;
+}
+#credit {
+	margin: 25px;
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<h1>renda</h1>
+<div>すばやくレンダ！（目標16タップ/秒）</div>
+
+<div id="main">
+<span id="tap">tap me</span>
+<span class="score">score: <span class="scoreval" id="scoreval">5</span><span class="scoreunit">tap/sec</span></span>
+<span class="score">highscore: <span class="scoreval" id="highscoreval">10</span><span class="scoreunit">tap/sec</span></span>
+</div>
+
+<div id="credit">
+<a href="http://fukuno.jig.jp/1582">CC BY fukuno.jig.jp 一日一創</a> (<a href=https://github.com/taisukef/renda>GitHub</a>)
+</div>
+
+</body>
+</html>

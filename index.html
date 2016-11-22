@@ -25,8 +25,11 @@ window.onload = function() {
 		cnt++;
 		e.preventEvent();
 	};
-	tap.onmousedown = tapped;
-	tap.ontouchstart = tapped;
+	if (tap.ontouchstart) {
+		tap.ontouchstart = tapped;
+	} else {
+		tap.onmousedown = tapped;
+	}
 };
 </script>
 <style>
